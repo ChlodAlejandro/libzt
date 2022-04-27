@@ -19,15 +19,15 @@ jobs:
       uses: android-actions/setup-android@v2
 
     - name: Setup cmake
-      uses: jwlawson/actions-setup-cmake@v1.12
-      with:
-        cmake-version: '3.10.2'
+      run: sdkmanager cmake;3.18.1
 
     - name: Checkout submodules
       run: git submodule update --init
         
     - name: Prepare repository
-      run: echo "sdk.dir=$ANDROID_SDK_ROOT" > $GITHUB_WORKSPACE/pkg/android/local.properties
+      run: |
+        echo "sdk.dir=$ANDROID_SDK_ROOT" > $GITHUB_WORKSPACE/pkg/android/local.properties
+        echo "cmake.dir=$ANDROID_SDK_ROOT/cmake/3.18.1" >> $GITHUB_WORKSPACE/pkg/android/local.properties
       
     - name: Build
       run: ./build.sh android-aar "release"
