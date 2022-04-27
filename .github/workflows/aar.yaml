@@ -1,6 +1,6 @@
 name: Build Android AAR
 
-on: [workflow_dispatch]
+on: [workflow_dispatch, push]
 
 jobs:
   build:
@@ -13,7 +13,7 @@ jobs:
       uses: actions/setup-java@v3
       with:
         java-version: 8
-        version: adopt
+        distribution: adopt
 
     - name: Setup Android SDK
       uses: android-actions/setup-android@v2
