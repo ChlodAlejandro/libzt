@@ -22,7 +22,7 @@ jobs:
       run: git submodule update --init
 
     - name: Prepare repository
-      run: echo "sdk.dir=$ANDROID_SDK_ROOT" > $GITHUB_WORKSPACE/pkg/android
+      run: echo "sdk.dir=$ANDROID_SDK_ROOT" > $GITHUB_WORKSPACE/pkg/android/local.properties
       
     - name: Build
       run: ./build.sh android-aar "release"
