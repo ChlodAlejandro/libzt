@@ -13,7 +13,7 @@ jobs:
       uses: actions/setup-java@v3
       with:
         java-version: 8
-        distribution: adopt
+        version: adopt
 
     - name: Setup Android SDK
       uses: android-actions/setup-android@v2
@@ -21,6 +21,9 @@ jobs:
     - name: Checkout submodules
       run: git submodule update --init
 
+    - name: Prepare repository
+      run: echo "sdk.dir=$ANDROID_SDK_ROOT" > $GITHUB_WORKSPACE/pkg/android
+      
     - name: Build
       run: ./build.sh android-aar "release"
 
