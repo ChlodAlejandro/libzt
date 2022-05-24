@@ -8,13 +8,7 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
-
-    - name: Set up JDK 8
-      uses: actions/setup-java@v3
-      with:
-        java-version: 8
-        distribution: adopt
-
+    
     - name: Checkout submodules
       run: git submodule update --init
         
@@ -22,6 +16,7 @@ jobs:
       run: |
         echo "sdk.dir=$ANDROID_SDK_ROOT" > $GITHUB_WORKSPACE/pkg/android/local.properties
         echo "cmake.dir=$ANDROID_SDK_ROOT/cmake/3.18.1" >> $GITHUB_WORKSPACE/pkg/android/local.properties
+        export JAVA_HOME=$JAVA_HOME_11_X64
         
     - name: Build
       run: ./build.sh android-aar "release"
