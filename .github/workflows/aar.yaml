@@ -15,21 +15,8 @@ jobs:
         java-version: 8
         distribution: adopt
 
-    - name: Setup Android SDK
-      uses: android-actions/setup-android@v2
-
-    - name: Setup cmake
-      run: |
-        sdkmanager --list | grep "cmake"
-        sdkmanager --sdk_root=$ANDROID_SDK_ROOT --verbose cmake;3.18.1
-
     - name: Checkout submodules
       run: git submodule update --init
-        
-    - name: Prepare repository
-      run: |
-        echo "sdk.dir=$ANDROID_SDK_ROOT" > $GITHUB_WORKSPACE/pkg/android/local.properties
-        echo "cmake.dir=$ANDROID_SDK_ROOT/cmake/3.18.1" >> $GITHUB_WORKSPACE/pkg/android/local.properties
       
     - name: Build
       run: ./build.sh android-aar "release"
