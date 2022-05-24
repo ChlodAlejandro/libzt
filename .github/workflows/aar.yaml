@@ -19,7 +19,9 @@ jobs:
       uses: android-actions/setup-android@v2
 
     - name: Setup cmake
-      run: sdkmanager cmake;3.18.1
+      run: |
+        sdkmanager --list | grep "cmake"
+        sdkmanager cmake;3.18.1
 
     - name: Checkout submodules
       run: git submodule update --init
